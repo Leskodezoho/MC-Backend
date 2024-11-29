@@ -10,11 +10,14 @@ var signuprouter = require("./routes/signup");
 var signinrouter = require("./routes/loginzoho");
 var homerouter = require("./routes/home");
 var forgot = require("./routes/forgotpws");
+var getcustomcertificate = require("./routes/getfile");
+
 const port = process.env.PORT || 3000;
 app.use("/signup", signuprouter);
 app.use("/signin", signinrouter);
 app.use("/home", homerouter);
 app.use("/forgot", forgot);
+app.use("/getcustomcertificate", getcustomcertificate);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
