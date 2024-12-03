@@ -20,7 +20,7 @@ async function refreshAccessToken() {
   try {
     const response = await fetch(tokenUrl, { method: "POST" });
     const data = await response.json();
-
+console.log(response);
     if (!response.ok) {
       throw new Error(`Failed to refresh token: ${data.error}`);
     }
