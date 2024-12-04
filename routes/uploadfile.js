@@ -58,7 +58,7 @@ router.post("/", upload.single("filePath"), async (req, res) => {
     const baseUrl = "https://www.zohoapis.in";
     const accountOwnerName = "handworkstech";
     const appLinkName = "medical-certificate-issuance-system";
-    const reportName = "All_Medical_Certificatest";
+    const reportName = "All_Medical_Certificates";
     const fieldName = "Updated_Custom_Format";
 
     // Construct the upload URL
