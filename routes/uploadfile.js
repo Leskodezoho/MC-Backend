@@ -86,7 +86,7 @@ router.post("/", upload.single("filePath"), async (req, res) => {
       },
       body: formData,
     });
-
+console.log(response);
     if (!response.ok) {
       const responseData = await response.json();
       return res.status(response.status).json({
