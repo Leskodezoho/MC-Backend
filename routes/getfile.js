@@ -10,8 +10,7 @@ const ZOHO_REFRESH_TOKEN = process.env.ZOHO_REFRESH_TOKEN;
 const ZOHO_CLIENT_ID = process.env.ZOHO_CLIENT_ID;
 const ZOHO_CLIENT_SECRET = process.env.ZOHO_CLIENT_SECRET;
 const ZOHO_TOKEN_URL = "https://accounts.zoho.in/oauth/v2/token";
-const ZOHO_API_URL =
-  "https://www.zohoapis.in/creator/v2.1/data/handworkstech/medical-certificate-issuance-system/report/All_Customs/159919000001912037/Custom_Certificate/download";
+
 
 // Function to refresh the access token
 async function refreshAccessToken() {
@@ -20,7 +19,7 @@ async function refreshAccessToken() {
   try {
     const response = await fetch(tokenUrl, { method: "POST" });
     const data = await response.json();
-console.log(response);
+
     if (!response.ok) {
       throw new Error(`Failed to refresh token: ${data.error}`);
     }
@@ -34,18 +33,65 @@ console.log(response);
 }
 
 // Middleware to handle Zoho API requests
-router.get("/", async (req, res) => {
+// router.get("/", async (req, res) => {
+//   console.log("getcustomcertificate");
+
+//   try {
+   
+//       console.log("Access token refreshing...");
+//       accessToken = await refreshAccessToken();
+//       response = await fetch(ZOHO_API_URL, {
+//         method: "GET",
+//         headers: { Authorization: `Zoho-oauthtoken ${accessToken}` },
+//       });
+
+
+//     if (!response.ok) {
+//       return res.status(response.status).json({
+//         error: true,
+//         message: `Failed to fetch data: ${response.statusText}`,
+//       });
+//     }
+
+//     // Extract filename from Content-Disposition header
+//     const contentDisposition = response.headers.get("content-disposition");
+//     const filename = contentDisposition
+//       ? contentDisposition.split("filename=")[1]?.replace(/"/g, "") || "downloaded_file.pdf"
+//       : "downloaded_file.pdf";
+
+//     // Convert response to arrayBuffer for binary data
+//     const arrayBuffer = await response.arrayBuffer();
+//     const buffer = Buffer.from(arrayBuffer);
+
+//     // Set headers for file download
+//     res.setHeader("Content-Type", response.headers.get("content-type"));
+//     res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+
+//     // Send the binary data as the response
+//     res.send(buffer);
+//   } catch (error) {
+//     console.error("Error fetching Zoho API:", error);
+//     res.status(500).json({
+//       error: true,
+//       message: "An error occurred while fetching data from Zoho API.",
+//     });
+//   }
+// });
+router.get("/:recordId", async (req, res) => {
   console.log("getcustomcertificate");
+  const { recordId } = req.params; // Extracting record ID from the route parameter
+console.log(recordId);
 
   try {
-   
-      console.log("Access token refreshing...");
-      accessToken = await refreshAccessToken();
-      response = await fetch(ZOHO_API_URL, {
-        method: "GET",
-        headers: { Authorization: `Zoho-oauthtoken ${accessToken}` },
-      });
-
+    console.log("Access token refreshing...");
+    const accessToken = await refreshAccessToken();
+    
+    // Assuming the record ID is part of the path, update the URL to include the record ID
+    const url =    `https://www.zohoapis.in/creator/v2.1/data/handworkstech/medical-certificate-issuance-system/report/All_Medical_Certificates/${recordId}/Custom_Format/download`;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: { Authorization: `Zoho-oauthtoken ${accessToken}` },
+    });
 
     if (!response.ok) {
       return res.status(response.status).json({
