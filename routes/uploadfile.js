@@ -58,8 +58,8 @@ router.post("/", upload.single("filePath"), async (req, res) => {
     const baseUrl = "https://www.zohoapis.in";
     const accountOwnerName = "handworkstech";
     const appLinkName = "medical-certificate-issuance-system";
-    const reportName = "All_Customs";
-    const fieldName = "Custom_Certificate";
+    const reportName = "All_Medical_Certificatest";
+    const fieldName = "Updated_Custom_Format";
 
     // Construct the upload URL
     const ZOHO_API_URL = `${baseUrl}/creator/v2.1/data/${accountOwnerName}/${appLinkName}/report/${reportName}/${recordId}/${fieldName}/upload`;
