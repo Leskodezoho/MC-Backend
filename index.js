@@ -14,12 +14,12 @@ var getcustomcertificate = require("./routes/getfile");
 var upload = require("./routes/uploadfile");
 
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 app.get("/", async (req, res) => {
 
   res.send("App Running");
   console.log("App Running");
-})z
+})
 app.use("/signup", signuprouter);
 app.use("/signin", signinrouter);
 app.use("/home", homerouter);
