@@ -14,7 +14,7 @@ var getcustomcertificate = require("./routes/getfile");
 var upload = require("./routes/uploadfile");
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5001;
 app.get("/", async (req, res) => {
 
   res.send("App Running");
@@ -27,5 +27,5 @@ app.use("/forgot", forgot);
 app.use("/getcustomcertificate", getcustomcertificate);
 app.use("/upload", upload);
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Medical Certificate listening on port ${port}`);
 });
