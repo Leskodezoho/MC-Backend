@@ -14,7 +14,7 @@ var getcustomcertificate = require("./routes/getfile");
 var upload = require("./routes/uploadfile");
 
 
-const port = process.env.PORT || 0.0.0.0/0.;
+const port = process.env.PORT || 443;
 app.get("/", async (req, res) => {
 
   res.send("App Running");
