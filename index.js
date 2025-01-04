@@ -15,6 +15,11 @@ var upload = require("./routes/uploadfile");
 
 
 const port = process.env.PORT || 3000;
+app.get("/", async (req, res) => {
+
+  res.send("App Running");
+  consloe.log("App Running");
+})
 app.use("/signup", signuprouter);
 app.use("/signin", signinrouter);
 app.use("/home", homerouter);
