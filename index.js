@@ -18,7 +18,7 @@ const port = process.env.PORT || 5001;
 app.get("/", async (req, res) => {
 
   res.send("App Running");
-  consloe.log("App Running");
+  console.log("App Running");
 })
 app.use("/signup", signuprouter);
 app.use("/signin", signinrouter);
